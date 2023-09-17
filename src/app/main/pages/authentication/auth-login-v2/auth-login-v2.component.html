@@ -1,0 +1,137 @@
+<div class="auth-wrapper auth-v2">
+  <div class="auth-inner row m-0">
+    <!-- Brand logo--><a class="brand-logo" href="javascript:void(0);">
+      <img src="{{ coreConfig.app.appLogoImage }}" alt="brand-logo" height="28" />
+      <h2 class="brand-text text-primary ml-1">{{ coreConfig.app.appName }}</h2></a
+    >
+    <!-- /Brand logo-->
+    <!-- Left Text-->
+    <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
+      <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
+        <img
+          class="img-fluid img_h"
+          [src]="
+            coreConfig.layout.skin === 'dark'
+              ? 'assets/images/pages/login-v2-car-dark.svg'
+              : 'assets/images/pages/login-v2-car.svg'
+          "
+          alt="Login V2"
+        />
+      </div>
+    </div>
+    <!-- /Left Text-->
+    <!-- Login-->
+    <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
+        <h2 class="card-title font-weight-bold mb-1">Bienvenido a Culture By Drivy! 👋</h2>
+        <p class="card-text mb-2">Inicia sesión en tu cuenta y comienza la aventura</p>
+        <ngb-alert [type]="'primary'" [dismissible]="false">
+          <div class="alert-body font-small-2">
+            <p>
+              <small class="mr-50"><span class="font-weight-bold">Celular:</span> Ingresa tu número de celular</small>
+            </p>
+            <p>
+              <small class="mr-50"><span class="font-weight-bold"> Código Seguro:</span> Ingresa tu código de seguridad registrado en la aplicación</small>
+            </p>
+          </div>
+          <span
+            class="feather icon-help-circle auth-help-icon font-medium-3"
+            placement="left"
+            ngbTooltip="Culture implementa un sólido sistema de inicio de sesión seguro basado en JWT (Token de Web JSON)"
+          ></span>
+        </ngb-alert>
+
+        <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+          <div class="alert-body">
+            <p>{{ error }}</p>
+          </div>
+        </ngb-alert>
+
+        <form class="auth-login-form mt-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="register-phoneNumber" class="form-label">Numero Celular</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">+57</span>
+              </div>
+              <input 
+                type="tel" 
+                id="register-phoneNumber"
+                formControlName="telefono" 
+                class="form-control" 
+                placeholder="3101230000" 
+                mask="(000) 000 00 00" 
+                aria-describedby="register-phoneNumber"
+                tabindex="4"
+                [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }" 
+              />
+              <div *ngIf="submitted && f.telefono.errors" class="invalid-feedback">
+                <div *ngIf="f.telefono.errors.required">El número de teléfono es requerido.</div>
+                <div *ngIf="f.telefono.errors.pattern">El número de teléfono debe contener 10 dígitos numéricos.</div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="form-group">
+            <label for="register-password" class="form-label">Codigo Seguro</label>
+            <div class="input-group input-group-merge form-password-toggle">
+              <input
+                [type]="passwordTextType ? 'text' : 'password'"
+                formControlName="clave" 
+                class="form-control form-control-merge"
+                placeholder=""
+                aria-describedby="register-password"
+                tabindex="3"
+                [ngClass]="{ 'is-invalid error': submitted && f.clave.errors }" 
+              />
+              <div class="input-group-append">
+                <span class="input-group-text cursor-pointer"
+                  ><i
+                    class="feather font-small-4"
+                    [ngClass]="{
+                      'icon-eye-off': passwordTextType,
+                      'icon-eye': !passwordTextType
+                    }"
+                    (click)="togglePasswordTextType()"
+                  ></i
+                ></span>
+              </div>
+            </div>
+            <div
+              *ngIf="submitted && f.clave.errors" 
+              class="invalid-feedback"
+              [ngClass]="{ 'd-block': submitted && f.clave.errors }" 
+            >
+              <div *ngIf="f.clave.errors.required">El código seguro es requerido.</div>
+              <div *ngIf="f.clave.errors.pattern">El código seguro debe contener exactamente 4 dígitos numéricos.</div>
+            </div>
+          </div>
+        
+          <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" id="remember-me" type="checkbox" tabindex="3" />
+              <label class="custom-control-label" for="remember-me"> Recordar</label>
+            </div>
+          </div>
+          <button [disabled]="loading" class="btn btn-primary btn-block" tabindex="4"  [disabled]="!loginForm.valid" rippleEffect>
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Ingresar
+          </button>
+        </form>
+        <p class="text-center mt-2">
+          <span>Nuevo en nuestra plataforma?</span
+          ><a routerLink="/pages/authentication/register-v2"><span>&nbsp;Crear una cuenta</span></a>
+        </p>
+        <!-- <div class="divider my-2">
+          <div class="divider-text">or</div>
+        </div>
+        <div class="auth-footer-btn d-flex justify-content-center">
+          <a class="btn btn-facebook" href="javascript:void(0)"><i data-feather="facebook"></i></a
+          ><a class="btn btn-twitter white" href="javascript:void(0)"><i data-feather="twitter"></i></a
+          ><a class="btn btn-google" href="javascript:void(0)"><i data-feather="mail"></i></a
+          ><a class="btn btn-github" href="javascript:void(0)"><i data-feather="github"></i></a>
+        </div> -->
+      </div>
+    </div>
+    <!-- /Login-->
+  </div>
+</div>

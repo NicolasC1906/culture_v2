@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Culture</title>
+    <base href="/" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+  name="description"
+  content="Culture es una potente aplicación que combina el control de tiempo por cronómetro con funciones avanzadas de seguimiento GPS y la gestión de perfiles de vehículos. Diseñada para empresas que desean optimizar sus procesos de mantenimiento, Culture aumenta la eficiencia y productividad en la gestión de equipos y maquinaria, permitiendo un mantenimiento más efectivo y programado."
+/>
+
+   <meta
+  name="keywords"
+  content="Control de tiempo por cronómetro, GPS, Perfiles de vehículos, Mantenimientos preventivos, Mantenimientos correctivos, Gestión documental, Planificación de mantenimientos, Calendario de mantenimientos, Seguimiento de mantenimientos, Registro de mantenimientos, Mantenimiento predictivo, Mantenimiento programado, Historial de mantenimientos, Gestión de activos, Control de inventario, Software de mantenimiento."
+/>
+
+    <meta name="author" content="IMD S.A.S" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
+      rel="stylesheet"
+    />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgjNW0WA93qphgZW-joXVR6VC3IiYFjfo"></script>
+
+    <!--! Remove this if not needed, Required only for quill editor code highlight -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+
+    <!-- Vuexy loading Screen CSS -->
+    <style type="text/css">
+      #loading-bg {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        justify-content: center; /* Centrar horizontalmente */
+        align-items: center; /* Centrar verticalmente */
+        position: absolute;
+        z-index: 99999;
+        pointer-events: none;
+      }
+    
+      .loading {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        border: 3px solid transparent;
+        position: relative; /* Cambio de posición relativa para permitir la superposición del logo */
+      }
+    
+      .loading .effect-1,
+      .loading .effect-2,
+      .loading .effect-3 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 3px solid transparent;
+        border-left: 3px solid rgba(121, 97, 249, 1);
+        border-radius: 50%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+    
+      .loading .effect-1 {
+        animation: rotate 1s ease infinite;
+      }
+    
+      .loading .effect-2 {
+        animation: rotateOpacity 1s ease infinite 0.1s;
+      }
+    
+      .loading .effect-3 {
+        -webkit-animation: rotateOpacity 1s ease infinite 0.2s;
+        animation: rotateOpacity 1s ease infinite 0.2s;
+      }
+    
+      .loading .effects {
+        transition: all 0.3s ease;
+      }
+    
+      @keyframes rotate {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+    
+        100% {
+          -webkit-transform: rotate(1turn);
+          transform: rotate(1turn);
+        }
+      }
+    
+      @keyframes rotateOpacity {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+          opacity: 0.1;
+        }
+    
+        100% {
+          -webkit-transform: rotate(1turn);
+          transform: rotate(1turn);
+          opacity: 1;
+        }
+      }
+    </style>
+    <!-- / Vuexy loading Screen CSS -->
+  </head>
+
+  <body>
+    <!-- Vuexy loading Screen -->
+    <core-loading-screen id="loading-bg">
+      <div class="loading">
+        <img src="assets/images/logo/logo_blank.png" alt="Logo" style="width: 50px; height: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"/>
+        <div class="effect-1 effects"></div>
+        <div class="effect-2 effects"></div>
+        <div class="effect-3 effects"></div>
+      </div>
+    </core-loading-screen>
+    <!-- / Vuexy loading Screen -->
+
+    <!-- Vuexy root component -->
+    <app-root> </app-root>
+    <!-- / Vuexy root component -->
+  </body>
+</html>
